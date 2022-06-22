@@ -5,7 +5,7 @@ const router = express.Router();
 const Routes = require('./routes.js');
 
 // Songs
-router.get('/songs', Routes.getFile);
+router.get('/:dir/:fileName', Routes.getFile);
 router.post('/songs', Routes.addFile);
 router.post('/zips', Routes.addFile);
 
