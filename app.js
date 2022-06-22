@@ -4,7 +4,6 @@ var PORT = 4000;
 var app = express();
 var public = require('./public.js');
 const cors = require('cors');
-require('dotenv').config();
 
 const fileupload = require("express-fileupload");
 const bodyParser = require('body-parser');
