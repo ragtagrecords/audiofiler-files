@@ -1,39 +1,36 @@
 const fs = require('fs');
-const path = require('path');
-const Logger = require('./utils/Logger.js');
+import { logError, logSuccess } from './logger';
 
 // Files that are accessible via API live here
 const rootDir = '/public-ext4/main';
 
-async function hasAccess(path, mode) {
+export async function hasAccess(path: string, mode: any) {
   fs.access(
     path,
     mode,
-    (err) => {
+    (err: any) => {
       if (err) {
-        Logger.logError('hasAccess()', err.message);
+        logError('hasAccess()', err.message);
         return false;
       }  
   });
   return true;
 }
 
-function addFile(file, dir) {
+export function addFile(file: any, dir: string) {
   return new Promise(resolve => {
     const dirPath = rootDir + dir + '/';
     const fileName = file.name;
     const fileSizeMB = file.size / 1e6;
 
-    file.mv(`${dirPath}${fileName}`, (err) => {
+    file.mv(`${dirPath}${fileName}`, (err: any) => {
       if (err) {
-        Logger.logError('addFile()', err.message);
+        logError('addFile()', err.message);
         resolve(false);
       } else {
-        Logger.logSuccess('addFile()', 'Received ' + fileName + " (" + fileSizeMB + " MB)");
+        logSuccess('addFile()', 'Received ' + fileName + " (" + fileSizeMB + " MB)");
         resolve(true);
       }
     });
   });
 }
-
-module.exports = { addFile, hasAccess };
