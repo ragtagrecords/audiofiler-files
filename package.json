@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node app.ts",
-    "reboot": "git fetch origin main && git reset origin/main --hard && forever stopall & forever start -v -c ts-node app.ts"
+    "reboot": "git fetch origin main && git reset origin/main --hard forever start -v -c ts-node app.ts"
   },
   "author": "ragtag records",
   "license": "ISC",
